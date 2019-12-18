@@ -9,12 +9,36 @@ class GameWindow extends React.Component {
         this.state = {
             currentEnemyPath: "Title",
             timer: 50,
-            currentAnswer: ""
+            currentAnswer: "",
+            currentCard: {
+                word: "",
+                kanji:"火"
+            }
         }
+    }
+
+    componentDidMount = () =>{
+        this.chooseRandomCard()
     }
 
     answerSend = async (e) => {
         //TODO: check if answer is correct and lose health
+    }
+
+    chooseRandomCard = async () =>{
+        // console.log(t)
+
+        await console.log(this.props)
+
+        let randomWord = this.props.possibleCards[0].word
+        let randomKanji = this.props.possibleCards[0].kanji
+        this.setState({
+            currentCard:{
+                word: randomWord,
+                kanji: randomKanji
+            }
+        })
+
     }
 
     handleTextInput = async (evt) => {
@@ -42,7 +66,7 @@ class GameWindow extends React.Component {
                         </div>
                     </form>
                     <div className='current-kanji'>
-                        
+                        <h1>{this.state.currentCard.kanji}</h1>
                     </div>
                 </div>
                 <div className='bottom-half-container'>
