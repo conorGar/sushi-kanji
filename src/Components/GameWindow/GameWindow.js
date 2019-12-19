@@ -7,7 +7,7 @@ class GameWindow extends React.Component {
         super(props)
 
         this.state = {
-            currentEnemyPath: "Title",
+            currentEnemyImgPath: "Title",
             timer: 50,
             currentAnswer: "",
             currentCard: {
@@ -23,6 +23,13 @@ class GameWindow extends React.Component {
 
     answerSend = async (e) => {
         //TODO: check if answer is correct and lose health
+        console.log(e)
+        e.preventDefault();
+        if(this.state.currentAnswer.toUpperCase() === this.state.currentCard.word.toUpperCase()){
+            console.log("answer is correct" + this.state.currentAnswer.toUpperCase() + " " + this.state.currentCard.word.toUpperCase())
+        }else{
+            console.log("answer is INCORRECT")
+        }
     }
 
     chooseRandomCard = async () =>{
@@ -53,7 +60,7 @@ class GameWindow extends React.Component {
         return (
             <div className='game-window-holder'>
                 <div className='top-half-container'>
-                    <form className='answer-form'>
+                    <form className='answer-form' onSubmit={this.answerSend}>
                         <div className="input-title-container">
                             <h2>Answer:</h2>
                             <input
@@ -62,6 +69,11 @@ class GameWindow extends React.Component {
                                 onChange={this.handleTextInput}
                                 className="title-input-form"
                                 value={this.state.currentAnswer}
+                            />
+                            <input
+                                type='submit'
+                                style={{display:'none'}}
+
                             />
                         </div>
                     </form>
