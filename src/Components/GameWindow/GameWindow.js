@@ -9,6 +9,8 @@ class GameWindow extends React.Component {
         this.state = {
             currentEnemyImgPath: "Title",
             timer: 50,
+            enemyHP: 5,
+            playerHP: 5,
             currentAnswer: "",
             currentCard: {
                 word: "",
@@ -25,10 +27,17 @@ class GameWindow extends React.Component {
         //TODO: check if answer is correct and lose health
         console.log(e)
         e.preventDefault();
-        if(this.state.currentAnswer.toUpperCase() === this.state.currentCard.word.toUpperCase()){
+        if(this.state.currentAnswer.toUpperCase() === this.state.currentCard.word.toUpperCase()){ //if answer is correct, decrease enemy HP
+            //TODO: check for enemy death
             console.log("answer is correct" + this.state.currentAnswer.toUpperCase() + " " + this.state.currentCard.word.toUpperCase())
+            this.setState((prevState) => ({
+                enemyHP: prevState.enemyHP - 1
+            }))
         }else{
             console.log("answer is INCORRECT")
+            this.setState((prevState) => ({
+                playerHP: prevState.playerHP - 1
+            }))
         }
     }
 
