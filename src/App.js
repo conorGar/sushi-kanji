@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import GameWindow from './Components/GameWindow/GameWindow'
+import MapWindow from './Components/MapWindow/MapWindow'
 import KanjiData from './kanji-lv1.json'
 class App extends React.Component {
 
@@ -25,7 +25,8 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-        {!this.state.isLoading &&   <GameWindow possibleCards ={this.state.possibleCards}/>}
+        {!this.state.isLoading &&  
+          <MapWindow possibleCards = {this.state.possibleCards}/>}
       </div>
     );
   }

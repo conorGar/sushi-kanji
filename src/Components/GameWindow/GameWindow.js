@@ -83,7 +83,7 @@ class GameWindow extends React.Component {
 
 
     playerWin = () => {
-
+        this.props.NextLevel()
     }
 
     timeTick = () =>{

@@ -9,29 +9,37 @@ class MapWindow extends React.Component{
         super(props)
 
         this.state ={
-            currentLevel: 1,
+            currentLevel: 0,
             showGameWindow: false,
             currentBackroundURL: '',
-            currentEnemyURL: ''
+            currentEnemyURL: '',
         }
     }
 
+    componentDidMount = () => {
+        this.setState((prevState) =>({
+            currentBackroundURL: LevelData[prevState.currentLevel].backgroundImg,
+            currentEnemyURL: LevelData[prevState.currentLevel].enemyImg,
+            showGameWindow: true
+        }))
+    }
 
-    moveToNextLevel = () => {
+
+    moveToNextLevel = () => { //activated by GameWindow at enemy death
         this.setState((prevState) =>({
             currentLevel: prevState.currentLevel+1,
-            showGameWindow: true
-
+            showGameWindow: true,
+            currentBackroundURL: LevelData[prevState.currentLevel+1].backgroundImg,
+            currentEnemyURL: LevelData[prevState.currentLevel+1].enemyImg
         }))
-
-        //Go through some array of levels, I guess that hold the location of the necessary images for the enemies/backgrounds, pick one and pass it to gamewindow
-
     }
 
     render(){
         return(
             <div className='map-window-holder'>
-                <GameWindow enemyURL ={this.currentEnemyURL} backgroundURL={this.currentBackroundURL} />
+                {this.state.showGameWindow && 
+                <GameWindow possibleCards={this.props.possibleCards} NextLevel={this.moveToNextLevel} enemyURL ={this.currentEnemyURL} backgroundURL={this.currentBackroundURL} />
+                }
             </div>
         )
     }

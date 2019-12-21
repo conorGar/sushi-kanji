@@ -1,13 +1,13 @@
 [
     {
         "level": 1,
-        "enemyImg":"fire",
-        "backgroundImg":"火"
+        "enemyImg":"../../demon1.png",
+        "backgroundImg":"../../background1.jpg"
     },
     {
         "level": 2,
-        "enemyImg":"fire",
-        "backgroundImg":"火"
+        "enemyImg":"../../demon1.png",
+        "backgroundImg":"../../background2.jpg"
     }
 
 ]
