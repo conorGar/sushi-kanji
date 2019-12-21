@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import GameWindow from './Components/GameWindow/GameWindow'
 import KanjiData from './kanji-lv1.json'
@@ -25,7 +25,6 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-      
         {!this.state.isLoading &&   <GameWindow possibleCards ={this.state.possibleCards}/>}
       </div>
     );

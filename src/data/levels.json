@@ -1,0 +1,13 @@
+[
+    {
+        "level": 1,
+        "enemyImg":"fire",
+        "backgroundImg":"火"
+    },
+    {
+        "level": 2,
+        "enemyImg":"fire",
+        "backgroundImg":"火"
+    }
+
+]
