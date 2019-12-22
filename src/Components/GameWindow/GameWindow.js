@@ -13,7 +13,7 @@ class GameWindow extends React.Component {
             playerHP: 5,
             currentAnswer: "",
             currentCard: {
-                word: "",
+                word: [],
                 kanji: "火"
             },
             possibleCards: KanjiData, 
@@ -22,15 +22,6 @@ class GameWindow extends React.Component {
     }
 
     componentDidMount = () => {
-
-        console.log(this.props.enemyURL)
-
-        //get the enemy image and background image from 'MapWindow.js'
-        this.setState({
-            currentEnemyImgPath: this.props.enemyURL,
-            backgroundImgPath: this.props.backgroundURL
-        })
-
         this.chooseRandomCard()
     }
 
@@ -38,24 +29,32 @@ class GameWindow extends React.Component {
         //TODO: check if answer is correct and lose health
         console.log(e)
         e.preventDefault();
-        if (this.state.currentAnswer.toUpperCase() === this.state.currentCard.word.toUpperCase()) { //if answer is correct, decrease enemy HP
-            //TODO: check for enemy death
-            console.log("answer is correct" + this.state.currentAnswer.toUpperCase() + " " + this.state.currentCard.word.toUpperCase())
-            this.setState((prevState) => ({
-                enemyHP: prevState.enemyHP - 1
-            }))
+        let isMatch = false;
+        this.state.currentCard.word.forEach(element => { //go through all translations to see if any match the given answer
+            if(element.toUpperCase() === this.state.currentAnswer.toUpperCase()){
+                this.setState((prevState) => ({
+                    enemyHP: prevState.enemyHP - 1
+                }))
+                this.checkEnemyDeath()
+                isMatch=true;
+            }
+        });
 
-        } else {
+        if(!isMatch){
             console.log("answer is INCORRECT")
             this.setState((prevState) => ({
                 playerHP: prevState.playerHP - 1
             }))
         }
+
+       
     }
 
     checkEnemyDeath = () => {
         if(this.state.enemyHP <= 0){
             this.playerWin()
+        }else{//if still alive, go to next card
+            this.chooseRandomCard()
         }
     }
 
@@ -65,9 +64,10 @@ class GameWindow extends React.Component {
 
         await console.log(this.props)
         const num = Math.floor(Math.random()*this.state.possibleCards.length)
-        console.log(num)
-        let randomWord = this.state.possibleCards[num].word
+        let randomWord = this.state.possibleCards[num].word.split(",") //split answers by comma if kanji has multiple readings
         let randomKanji = this.state.possibleCards[num].kanji
+        console.log(randomWord)
+
         this.setState({
             currentCard: {
                 word: randomWord,
