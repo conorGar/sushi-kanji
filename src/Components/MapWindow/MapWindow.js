@@ -33,15 +33,19 @@ class MapWindow extends React.Component{
             currentLevel: prevState.currentLevel+1,
             showGameWindow: true,
             currentBackroundURL: LevelData[prevState.currentLevel+1].backgroundImg,
-            currentEnemyURL: LevelData[prevState.currentLevel+1].enemyImg
+            enemyname: LevelData[prevState.currentLevel+1].enemyImg,
         }))
+
+        this.setState({
+            currentEnemyURL: Images[this.state.enemyname]
+        })
     }
 
     render(){
         return(
             <div className='map-window-holder'>
                 {this.state.showGameWindow && 
-                <GameWindow possibleCards={this.props.possibleCards} NextLevel={this.moveToNextLevel} enemyURL={this.state.currentEnemyURL} backgroundURL={this.state.currentBackroundURL} />
+                <GameWindow NextLevel={this.moveToNextLevel} enemyURL={this.state.currentEnemyURL} backgroundURL={this.state.currentBackroundURL} />
                 }
             </div>
         )

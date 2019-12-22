@@ -1,14 +1,13 @@
 import React from 'react'
 import ReactInterval from 'react-interval';
 import './GameWindow.css'
+import KanjiData from '../../kanji-lv1.json'
 
 class GameWindow extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            currentEnemyImgPath: "Title",
-            backgroundImgPath: '',
             timer: 5,
             enemyHP: 5,
             playerHP: 5,
@@ -17,6 +16,7 @@ class GameWindow extends React.Component {
                 word: "",
                 kanji: "火"
             },
+            possibleCards: KanjiData, 
             timeout: false
         }
     }
@@ -64,9 +64,10 @@ class GameWindow extends React.Component {
         // console.log(t)
 
         await console.log(this.props)
-
-        let randomWord = this.props.possibleCards[0].word
-        let randomKanji = this.props.possibleCards[0].kanji
+        const num = Math.floor(Math.random()*this.state.possibleCards.length)
+        console.log(num)
+        let randomWord = this.state.possibleCards[num].word
+        let randomKanji = this.state.possibleCards[num].kanji
         this.setState({
             currentCard: {
                 word: randomWord,
@@ -144,7 +145,7 @@ class GameWindow extends React.Component {
 
                     </div>
                     <div className='enemy-holder'>
-                        <img src={this.props.enemyURL}/>
+                        <img className='enemy-img' src={this.props.enemyURL}/>
                     </div>
                 </div>
             </div>
