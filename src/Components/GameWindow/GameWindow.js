@@ -23,6 +23,8 @@ class GameWindow extends React.Component {
 
     componentDidMount = () => {
 
+        console.log(this.props.enemyURL)
+
         //get the enemy image and background image from 'MapWindow.js'
         this.setState({
             currentEnemyImgPath: this.props.enemyURL,
@@ -92,8 +94,24 @@ class GameWindow extends React.Component {
         }))
     }
 
+    renderEnemyImage = () =>{
+        const test = '../../assets/demon1.png'
+        return(
+            <img className='enemy-img' src={require(test.toString())} alt={"demon"}/>
+
+        )
+    }
+
 
     render() {
+        console.log(this.props.enemyURL)
+        const enemyDivStyle ={
+            backgroundImage: 'url(' + this.props.enemyURL + ')',
+            backgroundColor: 'yellow'
+
+        }
+
+        const enemyURL = '../../assets/demon1.png'//this.props.enemyURL
         return (
             <div className='game-window-holder'>
 
@@ -126,7 +144,7 @@ class GameWindow extends React.Component {
 
                     </div>
                     <div className='enemy-holder'>
-
+                        <img src={this.props.enemyURL}/>
                     </div>
                 </div>
             </div>

@@ -49,3 +49,9 @@
     width: 30%;
     height: 80%;
 }
+
+.enemy-img{
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+}

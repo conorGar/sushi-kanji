@@ -2,6 +2,7 @@
 import React from 'react'
 import GameWindow from '../GameWindow/GameWindow'
 import LevelData from '../../data/levels.json'
+import Images from '../../assets/images'
 
 class MapWindow extends React.Component{
 
@@ -13,13 +14,15 @@ class MapWindow extends React.Component{
             showGameWindow: false,
             currentBackroundURL: '',
             currentEnemyURL: '',
+            enemyname: 'demon1'
         }
     }
 
     componentDidMount = () => {
         this.setState((prevState) =>({
             currentBackroundURL: LevelData[prevState.currentLevel].backgroundImg,
-            currentEnemyURL: LevelData[prevState.currentLevel].enemyImg,
+            enemyname: LevelData[prevState.currentLevel].enemyImg,
+            currentEnemyURL: Images[this.state.enemyname],
             showGameWindow: true
         }))
     }
@@ -38,7 +41,7 @@ class MapWindow extends React.Component{
         return(
             <div className='map-window-holder'>
                 {this.state.showGameWindow && 
-                <GameWindow possibleCards={this.props.possibleCards} NextLevel={this.moveToNextLevel} enemyURL ={this.currentEnemyURL} backgroundURL={this.currentBackroundURL} />
+                <GameWindow possibleCards={this.props.possibleCards} NextLevel={this.moveToNextLevel} enemyURL={this.state.currentEnemyURL} backgroundURL={this.state.currentBackroundURL} />
                 }
             </div>
         )
