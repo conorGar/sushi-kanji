@@ -52,6 +52,7 @@ class GameWindow extends React.Component {
 
     checkEnemyDeath = () => {
         if(this.state.enemyHP <= 0){
+            console.log("ENEMY IS DEAD*******")
             this.playerWin()
         }else{//if still alive, go to next card
             this.chooseRandomCard()
@@ -69,6 +70,7 @@ class GameWindow extends React.Component {
         console.log(randomWord)
 
         this.setState({
+            currentAnswer: '',
             currentCard: {
                 word: randomWord,
                 kanji: randomKanji
