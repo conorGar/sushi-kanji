@@ -9,7 +9,7 @@ class GameWindow extends React.Component {
 
         this.state = {
             timer: 5,
-            enemyHP: 5,
+            enemyHP: 2,
             playerHP: 5,
             currentAnswer: "",
             currentCard: {
@@ -97,29 +97,24 @@ class GameWindow extends React.Component {
         }))
     }
 
-    renderEnemyImage = () =>{
-        const test = '../../assets/demon1.png'
-        return(
-            <img className='enemy-img' src={require(test.toString())} alt={"demon"}/>
 
-        )
-    }
 
 
     render() {
-        console.log(this.props.enemyURL)
-        const enemyDivStyle ={
-            backgroundImage: 'url(' + this.props.enemyURL + ')',
-            backgroundColor: 'yellow'
+        console.log("ENEMY URL:" + this.props.enemyURL)
+        console.log("Background URL:" + this.props.backgroundURL)
 
+
+        let backgroundStyle = {
+            backgroundImage: "url(" + this.props.backgroundURL + ")",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat"
         }
 
-        const enemyURL = '../../assets/demon1.png'//this.props.enemyURL
         return (
-            <div className='game-window-holder'>
+            <div className='game-window-holder' style={backgroundStyle}>
 
-                <ReactInterval timeout={1000} enabled={true}
-                    callback={this.timeTick} />
+            
                 <div className='top-half-container'>
                     <form className='answer-form' onSubmit={this.answerSend}>
                         <div className="input-title-container">
@@ -142,12 +137,13 @@ class GameWindow extends React.Component {
                         <h1>{this.state.currentCard.kanji}</h1>
                     </div>
                 </div>
-                <div className='bottom-half-container'>
+                <div className='bottom-half-container'  >
+                    {/* <img className='background-img' alt='backdrop' src={this.props.backgroundURL} /> */}
                     <div className='player-holder'>
 
                     </div>
                     <div className='enemy-holder'>
-                        <img className='enemy-img' src={this.props.enemyURL}/>
+                        <img className='enemy-img' alt='demon' src={this.props.enemyURL}/>
                     </div>
                 </div>
             </div>

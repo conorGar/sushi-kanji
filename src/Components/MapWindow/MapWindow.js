@@ -17,33 +17,35 @@ class MapWindow extends React.Component{
             currentBackroundURL: '',
             currentEnemyURL: '',
             enemyname: 'demon1',
+            backgroundName: 'background1',
             playerIconClass: 'player-icon-lv1'
         }
     }
 
     componentDidMount = () => {
         this.setState((prevState) =>({
-            currentBackroundURL: LevelData[prevState.currentLevel].backgroundImg,
+            currentBackroundURL: Images[this.state.backgroundName],
             enemyname: LevelData[prevState.currentLevel].enemyImg,
             currentEnemyURL: Images[this.state.enemyname],
-            showGameWindow: false
+            showGameWindow: true
         }))
 
-        this.moveToNextLevel()
     }
 
 
     moveToNextLevel = () => { //activated by GameWindow at enemy death
+        console.log(this.state.currentLevel)
         this.setState((prevState) =>({
             currentLevel: prevState.currentLevel+1,
             showGameWindow: false,
-            currentBackroundURL: LevelData[prevState.currentLevel+1].backgroundImg,
+            backgroundName: LevelData[prevState.currentLevel+1].backgroundImg,
             enemyname: LevelData[prevState.currentLevel+1].enemyImg,
             playerIconClass: `player-icon-lv${prevState.currentLevel+1}`
         }))
 
         this.setState({
-            currentEnemyURL: Images[this.state.enemyname]
+            currentEnemyURL: Images[this.state.enemyname],
+            currentBackroundURL: Images[this.state.backgroundName]
         })
 
         setTimeout(() =>{this.setState({showGameWindow:true})},1000) //show game window after delay

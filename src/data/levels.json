@@ -2,12 +2,12 @@
     {
         "level": 1,
         "enemyImg":"demon1",
-        "backgroundImg":"../../assets/background1.jpg"
+        "backgroundImg":"background1"
     },
     {
         "level": 2,
         "enemyImg":"demon2",
-        "backgroundImg":"../../assets/background2.jpg"
+        "backgroundImg":"background2"
     }
 
 ]
