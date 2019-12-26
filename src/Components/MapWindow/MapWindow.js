@@ -3,6 +3,7 @@ import React from 'react'
 import GameWindow from '../GameWindow/GameWindow'
 import LevelData from '../../data/levels.json'
 import Images from '../../assets/images'
+import SushiImages from '../../assets/sushi-images'
 
 
 import './MapWindow.css'
@@ -16,7 +17,9 @@ class MapWindow extends React.Component{
             showGameWindow: false,
             currentBackroundURL: '',
             currentEnemyURL: '',
+            currentSushiURL: '',
             enemyname: 'demon1',
+            sushiname: 'sushi_umi',
             backgroundName: 'background1',
             playerIconClass: 'player-icon-lv1'
         }
@@ -27,6 +30,7 @@ class MapWindow extends React.Component{
             currentBackroundURL: Images[this.state.backgroundName],
             enemyname: LevelData[prevState.currentLevel].enemyImg,
             currentEnemyURL: Images[this.state.enemyname],
+            currentSushiURL: SushiImages[this.state.sushiname],
             showGameWindow: true
         }))
 
@@ -60,7 +64,7 @@ class MapWindow extends React.Component{
 
                 </div>
                 {this.state.showGameWindow && 
-                <GameWindow NextLevel={this.moveToNextLevel} enemyURL={this.state.currentEnemyURL} backgroundURL={this.state.currentBackroundURL} />
+                <GameWindow NextLevel={this.moveToNextLevel} enemyURL={this.state.currentEnemyURL} backgroundURL={this.state.currentBackroundURL} sushiURL={this.state.currentSushiURL}/>
                 }
 
             </div>

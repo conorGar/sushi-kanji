@@ -101,7 +101,7 @@ class GameWindow extends React.Component {
 
 
     render() {
-        console.log("ENEMY URL:" + this.props.enemyURL)
+        console.log("SUSHI URL:" + this.props.sushiURL)
         console.log("Background URL:" + this.props.backgroundURL)
 
 
@@ -140,7 +140,7 @@ class GameWindow extends React.Component {
                 <div className='bottom-half-container'  >
                     {/* <img className='background-img' alt='backdrop' src={this.props.backgroundURL} /> */}
                     <div className='player-holder'>
-
+                        <img className='player-img' alt='player sushi' src={this.props.sushiURL} />
                     </div>
                     <div className='enemy-holder'>
                         <img className='enemy-img' alt='demon' src={this.props.enemyURL}/>
