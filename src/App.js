@@ -2,10 +2,12 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import MapWindow from './Components/MapWindow/MapWindow'
+import axios from 'axios'
 class App extends React.Component {
 
     state = {
       isLoading:true
+
     }
 
     componentDidMount = () =>{
@@ -13,6 +15,15 @@ class App extends React.Component {
       this.setState({ 
         isLoading:false
       
+      })
+
+      const url = '/api/users.php'
+      axios.get(url).then(res=>res.data)
+      .then((data) =>{ //*****TODO: This is where the auth would occur, right now im just setting all the data grabbed to an array in state */
+        this.setState({
+          contacts: data
+        })
+        console.log(this.state.contacts)
       })
 
     }
