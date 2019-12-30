@@ -2,6 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import MapWindow from './Components/MapWindow/MapWindow'
+import LoginPage from './pages/LoginPage/LoginPage'
 import axios from 'axios'
 class App extends React.Component {
 
@@ -32,8 +33,9 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-        {!this.state.isLoading &&  
-          <MapWindow />}
+        <LoginPage/>
+        {/* {!this.state.isLoading &&  
+          <MapWindow />} */}
       </div>
     );
   }
